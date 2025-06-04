@@ -1,1 +1,0 @@
-{"name":"Local: DSA06015_MERGE SORT","url":"d:\\CODE\\Code ptit\\DSA\\Sap_xep tim_kiem\\DSA06015_MERGE SORT.cpp","tests":[{"id":1740919653078,"input":"2\n5\n4 1 3 9 7\n10\n10 9 8 7 6 5 4 3 2 1","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\Code ptit\\DSA\\Sap_xep tim_kiem\\DSA06015_MERGE SORT.cpp","group":"local","local":true}

@@ -1,1 +1,0 @@
-{"name":"Local: DSA03009_SAP XEP CONG VIEC 2","url":"d:\\CODE\\Code ptit\\DSA\\Tham lam\\DSA03009_SAP XEP CONG VIEC 2.cpp","tests":[{"id":1739156463876,"input":"3\n\n0 2 10\n\n0 1 5\n\n0 1 7","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CODE\\Code ptit\\DSA\\Tham lam\\DSA03009_SAP XEP CONG VIEC 2.cpp","group":"local","local":true}
