@@ -2,22 +2,23 @@
 
 using namespace std;
 
+int dp[1001][1001];
 int main(){
     int t; cin >> t;
     while(t--){
         int n, k;
         cin >> n >> k;
-        int a[n];
-        for(int i = 0; i < n; i++){
-            cin >> a[i];
+        dp[0][0] = 0;
+        for(int i = 1; i <= n; i++){
+            dp[0][i] = -1e9;
         }
-        vector<int> dp(n + 1, 0);
-        for(int i = 0; i < n; i++){
-            dp[i] = a[i];
-            for(int j = 0; j < i; j++){
-                if(a[i] > a[j])
+        for(int i = 1; i <= n; i++){
+            int x; cin >> x;
+            x %= k;
+            for(int j = 0; j < k; j++){
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][(j + k - x) % k] + 1);
             }
-
         }
+        cout << dp[n][0]<< endl;
     }
 }
