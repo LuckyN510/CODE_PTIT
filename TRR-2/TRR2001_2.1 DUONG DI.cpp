@@ -1,93 +1,70 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-bool visited[1001];
-vector<int> adj[1001];
-int a[1001][1001];
-int parent[1001];
+const int maxn = 105;
+int a[maxn][maxn];
+int n, u, v;
+vector<bool> visited(maxn, false);
+vector<int> adj[maxn];
+int parent[maxn];
 
-void reset(int n) {
-    for (int i = 0; i < n; ++i) {
-        adj[i].clear();
-        visited[i] = false;
-        parent[i] = -1;
-    }
-}
-
-void DFS(int u) {
+void DFS(int u){
     visited[u] = true;
-    for (int x : adj[u]) {
-        if (!visited[x]) {
-            parent[x] = u;
-            DFS(x);
+    for(int v : adj[u]){
+        if(!visited[v]){
+            parent[v] = u;
+            DFS(v);
         }
     }
-}
+} 
 
-int pathLength2(int u, int v) {
+int pathLen2(int u, int v){
     int cnt = 0;
-    for (int x : adj[u]) {
-        for (int y : adj[x]) {
-            if (y == v) {
+    for(int x : adj[u]){
+        for(int y : adj[x]){
+            if(y == v){
                 ++cnt;
-                break; 
+                break;
             }
         }
     }
     return cnt;
 }
 
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0); cout.tie(0);
+int main(){
     freopen("TK.INP", "r", stdin);
     freopen("TK.OUT", "w", stdout);
-    int test;
-    cin >> test;
 
-    if (test == 1) {
-        int n, u, v;
-        cin >> n >> u >> v;
-        --u; --v;
-        reset(n);
-
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j) {
-                cin >> a[i][j];
-                if (a[i][j] == 1) {
-                    adj[i].push_back(j);
-                }
+    int test; cin >> test;
+    cin >> n >> u >> v;
+    for(int i = 1; i <= n; i++){
+        for(int j = 1; j <= n; j++){
+            cin >> a[i][j];
+            if(a[i][j] == 1){
+                adj[i].push_back(j);
             }
-
-        cout << pathLength2(u, v) << '\n';
+        }
     }
-    else if (test == 2) {
-        int n, u, v;
-        cin >> n >> u >> v;
-        --u; --v;
-        reset(n);
-        for (int i = 0; i < n; ++i)
-            for (int j = 0; j < n; ++j) {
-                cin >> a[i][j];
-                if (a[i][j] == 1) {
-                    adj[i].push_back(j);
-                }
-            }
-
+    if(test == 1){
+        cout << pathLen2(u, v) << "\n";
+    }
+    else if(test == 2){
         DFS(u);
-        if (!visited[v]) {
+        if(!visited[v]){
             cout << "0\n";
-        } else {
-            vector<int> path;
-            for (int cur = v; cur != u; cur = parent[cur]) {
-                path.push_back(cur);
+        }
+        else{
+            vector<int> res;
+            while(u != v){
+                res.push_back(v);
+                v = parent[v];
             }
-            path.push_back(u);
-            reverse(path.begin(), path.end());
-            for (int node : path) {
-                cout << node + 1 << ' ';
+            res.push_back(u);
+            reverse(res.begin(), res.end());
+            for(int it : res){
+                cout << it << " ";
             }
-            cout << '\n';
         }
     }
 }
